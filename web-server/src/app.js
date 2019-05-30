@@ -39,6 +39,26 @@ app.get('/about',(req,res) => {
     })
 })
 
+//minhaapp.com.br/cotacoes
+app.get('/cotacoes',(req,res) => {
+    if(!req.query.ativo){
+        const error = {
+            message:'O ativo deve ser informado'
+        }
+        return res.status(400).json(error)
+    }
+    const symbol = req.query.ativo.toUpperCase()
+
+    cotacoes(symbol, (data,err) => {
+        if(err){
+            console.log(err)
+            return res.status(500).json(err)    
+        }
+        console.log(data)
+        res.status(200).json(data)
+    })        
+})
+
 
 app.get('/help/*', (req, res) => {        
     res.render('404', {

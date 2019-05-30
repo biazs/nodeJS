@@ -8,17 +8,23 @@ const cotacao = (symbol, callback) => {
 
     request({url:url, json:true}, (err, response) => {
         if(err){
-            throw new Error(`Something went wrong: ${err}`)
+            const error = {
+                messagem : `Something went wrong: ${err}`
+            }
+            callback(null, error)
         }
         if(response.body.data == undefined){
-            throw new Error(`No data found`)
+            const error = {
+                messagem : `No data found`
+            }
+            callback(null, error)                        
         }
 
         const parsedJSON = response.body.data[0]
         const {symbol, price_open, price, day_high, day_low} = parsedJSON
         const data = {symbol, price_open, price, day_high, day_low}
 
-        callback(data)
+        callback(data, null)
     })
 }
 module.exports = cotacao
