@@ -71,7 +71,7 @@ app.get('*', (req, res) => {
     //res.send('404')    
     res.render('404', {
         title: '404',
-        errorMessage : 'Página não encontrada',
+        errorMessage : 'Página não encontrada.',
         author: 'Bia Zoroastro'})
 })
 
