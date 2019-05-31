@@ -15,7 +15,7 @@ const cotacao = (symbol, callback) => {
         }
         if(response.body.data == undefined){
             const error = {
-                messagem : `No data found.`
+                messagem : `No data found`
             }
             callback(null, error)                        
         }
